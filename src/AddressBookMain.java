@@ -27,7 +27,15 @@ public class AddressBookMain {
                     case 3:
                         addressBook.deleteContact();
                         break;
-
+                    case 4:
+                        addressBook.showAddressBook();
+                        break;
+                    case 5:
+                        isExit = true;
+                        System.out.println("Exit");
+                        break;
+                    default:
+                        System.out.println("Please Enter Valid Input");
                 }
 
             }
@@ -70,7 +78,7 @@ public class AddressBookMain {
                 String state = sc.nextLine();
                 person.state = state;
             }
-            else  {
+              else  {
                 System.out.println(enteredName + " Contact not found");
             }
         }
@@ -84,11 +92,16 @@ public class AddressBookMain {
                // flag = true;
                 addressBook.remove(person);
             }
-            else {
+             else {
                 System.out.println("Contact not found");
             }
         }
 
+    }
+    private void showAddressBook() {
+        for(int i = 0; i < addressBook.size(); i++) {
+            System.out.println(addressBook.get(i));
+        }
     }
 }
 
