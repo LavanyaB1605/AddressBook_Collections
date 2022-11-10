@@ -24,6 +24,10 @@ public class AddressBookMain {
                     case 2:
                         addressBook.editContact();
                         break;
+                    case 3:
+                        addressBook.deleteContact();
+                        break;
+
                 }
 
             }
@@ -70,6 +74,21 @@ public class AddressBookMain {
                 System.out.println(enteredName + " Contact not found");
             }
         }
+    }
+    private void deleteContact() {
+        System.out.println("Enter Name of Contact to be deleted:");
+        String first_name = sc.nextLine();
+        //boolean flag = false;
+        for (Person person : addressBook) {
+            if (person.firstName.equals(first_name)) {
+               // flag = true;
+                addressBook.remove(person);
+            }
+            else {
+                System.out.println("Contact not found");
+            }
+        }
+
     }
 }
 
