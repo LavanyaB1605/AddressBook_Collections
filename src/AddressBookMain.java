@@ -103,6 +103,12 @@ public class AddressBookMain {
             System.out.println(" Displaying Duplicate contact: "+addressBook.getFirstName()+ " "+ addressBook.getLastName());
         }
     }
+    public static void countCity() {
+        System.out.println("Enter City name");
+        String input = sc.nextLine();
+        long count= addressBook.stream().filter(city -> city.getCity().equals(input)).count();
+        System.out.println("No of Contacts matched is " + count);
+    }
     public static void addAddressBook(){
         boolean isExit = true;
         while(isExit){
@@ -112,8 +118,9 @@ public class AddressBookMain {
                     " 3.Delete Contact Details \n " +
                     " 4.Show Contact Details \n " +
                     " 5.Duplicate Contact Details \n " +
-                    "6.Exit");
-            System.out.print("Please Enter Option:");
+                    " 6.No of Contact in Same City \n " +
+                    "7.Exit");
+            System.out.print("Please Enter Option: ");
             int option = Integer.parseInt(sc.nextLine());
             switch (option){
                 case 1:
@@ -132,6 +139,9 @@ public class AddressBookMain {
                     checkDuplicate();
                     break;
                 case 6:
+                    countCity();
+                    break;
+                case 7:
                     isExit = false;
                     System.out.println("Exit");
                 default:
