@@ -109,6 +109,27 @@ public class AddressBookMain {
         long count= addressBook.stream().filter(city -> city.getCity().equals(input)).count();
         System.out.println("No of Contacts matched is " + count);
     }
+    public static void searchByCityOrState() {
+        System.out.println("Enter the Name of AddressBook");
+        String bookName = sc.nextLine();
+        ArrayList<Person> book = newAddressBook.get(bookName);
+        AddressBookMain addressBookSystem = new AddressBookMain();
+        if (book == null) {
+            System.out.println("No results found");
+        } else {
+            addressBookSystem.searchContactDetails();
+        }
+    }
+
+    public void searchContactDetails() {
+        System.out.println("Enter city or state to search");
+        String input = sc.nextLine();
+        for (Person person : addressBook) {
+            if (person.getCity().equals(input) || person.getState().equals(input)) {
+                System.out.println("Result with city and state is " + person);
+            }
+        }
+    }
     public static void addAddressBook(){
         boolean isExit = true;
         while(isExit){
@@ -119,7 +140,8 @@ public class AddressBookMain {
                     " 4.Show Contact Details \n " +
                     " 5.Duplicate Contact Details \n " +
                     " 6.No of Contact in Same City \n " +
-                    "7.Exit");
+                    " 7.Search in City or State \n " +
+                    "8.Exit");
             System.out.print("Please Enter Option: ");
             int option = Integer.parseInt(sc.nextLine());
             switch (option){
@@ -142,6 +164,9 @@ public class AddressBookMain {
                     countCity();
                     break;
                 case 7:
+                    searchByCityOrState();
+                    break;
+                case 8:
                     isExit = false;
                     System.out.println("Exit");
                 default:
