@@ -103,7 +103,7 @@ public class AddressBookMain {
             System.out.println(" Displaying Duplicate contact: "+addressBook.getFirstName()+ " "+ addressBook.getLastName());
         }
     }
-    public static void countCity() {
+    public static void noOfContactsInCity() {
         System.out.println("Enter City name");
         String input = sc.nextLine();
         long count= addressBook.stream().filter(city -> city.getCity().equals(input)).count();
@@ -126,8 +126,15 @@ public class AddressBookMain {
         String input = sc.nextLine();
         for (Person person : addressBook) {
             if (person.getCity().equals(input) || person.getState().equals(input)) {
-                System.out.println("Result with city and state is " + person);
+                System.out.println("Result with city or state is " + person);
             }
+        }
+    }
+    public static void sortAddressBookByPerson() {
+        if (addressBook.isEmpty()) {
+            System.out.println("Contact book is empty");
+        } else {
+            addressBook.stream().sorted(Comparator.comparing(Person::getFirstName)).forEach(System.out::println);
         }
     }
     public static void addAddressBook(){
@@ -141,7 +148,8 @@ public class AddressBookMain {
                     " 5.Duplicate Contact Details \n " +
                     " 6.No of Contact in Same City \n " +
                     " 7.Search in City or State \n " +
-                    "8.Exit");
+                    " 8.Sort contacts by Name \n " +
+                    "9.Exit");
             System.out.print("Please Enter Option: ");
             int option = Integer.parseInt(sc.nextLine());
             switch (option){
@@ -161,12 +169,15 @@ public class AddressBookMain {
                     checkDuplicate();
                     break;
                 case 6:
-                    countCity();
+                    noOfContactsInCity();
                     break;
                 case 7:
                     searchByCityOrState();
                     break;
                 case 8:
+                    sortAddressBookByPerson();
+                    break;
+                case 9:
                     isExit = false;
                     System.out.println("Exit");
                 default:
