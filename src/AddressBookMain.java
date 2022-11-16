@@ -126,15 +126,22 @@ public class AddressBookMain {
         String input = sc.nextLine();
         for (Person person : addressBook) {
             if (person.getCity().equals(input) || person.getState().equals(input)) {
-                System.out.println("Result with city or state is " + person);
+                System.out.println("Result with city or state: " + person);
             }
         }
     }
     public static void sortAddressBookByPerson() {
         if (addressBook.isEmpty()) {
-            System.out.println("Contact book is empty");
+            System.out.println("Address Book is empty");
         } else {
             addressBook.stream().sorted(Comparator.comparing(Person::getFirstName)).forEach(System.out::println);
+        }
+    }
+    public static void sortByState() {
+        if (addressBook.isEmpty()) {
+            System.out.println("Address Book is empty");
+        } else {
+            addressBook.stream().sorted(Comparator.comparing(Person::getState)).forEach(System.out::println);
         }
     }
     public static void addAddressBook(){
@@ -143,13 +150,14 @@ public class AddressBookMain {
             System.out.println("Address Book Menu");
             System.out.println("1.Add Contact Details \n" +
                     " 2.Edit Contact Details \n" +
-                    " 3.Delete Contact Details \n " +
-                    " 4.Show Contact Details \n " +
-                    " 5.Duplicate Contact Details \n " +
-                    " 6.No of Contact in Same City \n " +
-                    " 7.Search in City or State \n " +
-                    " 8.Sort contacts by Name \n " +
-                    "9.Exit");
+                    " 3.Delete Contact Details \n" +
+                    " 4.Show Contact Details \n" +
+                    " 5.Duplicate Contact Details \n" +
+                    " 6.No of Contact in Same City \n" +
+                    " 7.Search in City or State \n" +
+                    " 8.Sort contacts by Name \n" +
+                    " 9.Sort contacts by State \n" +
+                    " 10.Exit");
             System.out.print("Please Enter Option: ");
             int option = Integer.parseInt(sc.nextLine());
             switch (option){
@@ -178,6 +186,9 @@ public class AddressBookMain {
                     sortAddressBookByPerson();
                     break;
                 case 9:
+                    sortByState();
+                    break;
+                case 10:
                     isExit = false;
                     System.out.println("Exit");
                 default:
